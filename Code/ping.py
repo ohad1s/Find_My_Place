@@ -1,12 +1,3 @@
-# import os
-#
-# ip_address = "8.8.8.8" # replace with your desired IP address
-# response = os.system("ping " + ip_address)
-#
-# if response == 0:
-#     print(ip_address, "is up!")
-# else:
-#     print(ip_address, "is down.")
 import socket
 import struct
 
