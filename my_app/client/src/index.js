@@ -26,7 +26,20 @@ function registerEventListeners() {
 
     const click_home = document.getElementById("home");
     click_home.addEventListener("click", handle_home);
+
+    const rows = document.querySelectorAll('table tbody tr');
+    rows.forEach(row => {
+        const maxSeats = parseInt(row.cells[2].textContent);
+        const seatsTaken = parseInt(row.cells[1].textContent);
+        if (maxSeats === seatsTaken) {
+            row.classList.remove('table-empty');
+            row.classList.add('table-full');
+        } else {
+            row.classList.remove('table-full');
+            row.classList.add('table-empty');
+        }
+    });
 }
 
-// Register event listeners on page load
+// Call registerEventListeners() on page load
 registerEventListeners();
