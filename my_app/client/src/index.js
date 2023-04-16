@@ -6,6 +6,7 @@ function handleEnter() {
         .then(data => {
             console.log(data)
             document.getElementById("main-content").innerHTML = data;
+            registerEventListeners(); // register event listeners after changing HTML content
         });
 }
 
@@ -15,12 +16,17 @@ function handle_home() {
         .then(data => {
             console.log(data)
             document.getElementById("main-content").innerHTML = data;
+            registerEventListeners(); // register event listeners after changing HTML content
         });
 }
 
-const click_enter = document.getElementById("enter");
-click_enter.addEventListener("click", handleEnter);
+function registerEventListeners() {
+    const click_enter = document.getElementById("enter");
+    click_enter.addEventListener("click", handleEnter);
 
-const click_home = document.getElementById("home");
-click_home.addEventListener("click", handle_home);
+    const click_home = document.getElementById("home");
+    click_home.addEventListener("click", handle_home);
+}
 
+// Register event listeners on page load
+registerEventListeners();
