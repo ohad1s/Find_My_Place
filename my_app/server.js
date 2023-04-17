@@ -5,6 +5,8 @@ import path from 'path';
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
+app.use(express.static('public'));
+app.use('/pics', express.static('public'));
 
 app.get('/', (req, res) => res.send('Server running'));
 
@@ -26,6 +28,15 @@ app.get('/f3', function(req, res) {
 app.get('/f4', function(req, res) {
     res.sendFile(process.cwd()+ '/client/public/pages/f4.html');
 });
+
+app.get('/scan', function(req, res) {
+    res.sendFile(process.cwd()+ '/client/public/pages/Scanning.html');
+});
+
+app.get('/ext', function(req, res) {
+    res.sendFile(process.cwd()+ '/client/public/pages/extension.html');
+});
+
 
 const PORT = process.env.PORT || 5000;
 
