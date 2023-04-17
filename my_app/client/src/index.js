@@ -6,7 +6,7 @@ function handleEnter() {
         .then(data => {
             console.log(data)
             document.getElementById("main-content").innerHTML = data;
-            registerEventListeners(); // register event listeners after changing HTML content
+            registerEventListeners1(); // register event listeners after changing HTML content
         });
 }
 
@@ -16,22 +16,17 @@ function handle_home() {
         .then(data => {
             console.log(data)
             document.getElementById("main-content").innerHTML = data;
-            registerEventListeners(); // register event listeners after changing HTML content
+            registerEventListeners2(); // register event listeners after changing HTML content
         });
 }
 
-function registerEventListeners() {
-    const click_enter = document.getElementById("enter");
-    click_enter.addEventListener("click", handleEnter);
-
-    const click_home = document.getElementById("home");
-    click_home.addEventListener("click", handle_home);
-
+function color_table() {
     const rows = document.querySelectorAll('table tbody tr');
     rows.forEach(row => {
         const maxSeats = parseInt(row.cells[2].textContent);
         const seatsTaken = parseInt(row.cells[1].textContent);
         if (maxSeats === seatsTaken) {
+            console.log("Hello, world!");
             row.classList.remove('table-empty');
             row.classList.add('table-full');
         } else {
@@ -41,5 +36,19 @@ function registerEventListeners() {
     });
 }
 
+function registerEventListeners1() {
+    const click_home = document.getElementById("home");
+    click_home.addEventListener("click", handle_home);
+    color_table();
+}
+
+function registerEventListeners2() {
+    const click_enter = document.getElementById("enter");
+    click_enter.addEventListener("click", handleEnter);
+}
+
 // Call registerEventListeners() on page load
-registerEventListeners();
+registerEventListeners1();
+registerEventListeners2();
+
+
