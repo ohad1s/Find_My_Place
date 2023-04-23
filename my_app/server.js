@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mysql from 'mysql2';
 import path from 'path';
 
+
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
@@ -45,7 +46,7 @@ function connection_to_sql(){
 app.get('/', (req, res) => res.send('Server running'));
 
 app.get('/home', function(req, res) {
-    res.sendFile(process.cwd()+ '/client/public/index.html');
+    res.json({1: 'home'});
 });
 
 app.get('/f1', function(req, res) {
@@ -61,15 +62,42 @@ app.get('/f1', function(req, res) {
     });
 });
 
-app.get('/f2', (req, res) => {
-    res.sendFile(process.cwd()+ '/client/public/pages/f2.html');
+app.get('/f2', function(req, res) {
+    // Execute a query to retrieve data from the database
+    connection.query('SELECT * FROM Tables Where Floor = 2', function(err, results) {
+        if (err) {
+            console.error('Error executing query: ' + err.stack);
+            res.status(500).json({ error: 'Error executing query' });
+            return;
+        }
+        // Format the results as a JSON object and send the response
+        res.json({ data: results });
+    });
 });
 
 app.get('/f3', function(req, res) {
-    res.sendFile(process.cwd()+ '/client/public/pages/f3.html');
+    // Execute a query to retrieve data from the database
+    connection.query('SELECT * FROM Tables Where Floor = 3', function(err, results) {
+        if (err) {
+            console.error('Error executing query: ' + err.stack);
+            res.status(500).json({ error: 'Error executing query' });
+            return;
+        }
+        // Format the results as a JSON object and send the response
+        res.json({ data: results });
+    });
 });
 app.get('/f4', function(req, res) {
-    res.sendFile(process.cwd()+ '/client/public/pages/f4.html');
+    // Execute a query to retrieve data from the database
+    connection.query('SELECT * FROM Tables Where Floor = 4', function(err, results) {
+        if (err) {
+            console.error('Error executing query: ' + err.stack);
+            res.status(500).json({ error: 'Error executing query' });
+            return;
+        }
+        // Format the results as a JSON object and send the response
+        res.json({ data: results });
+    });
 });
 
 app.get('/scan', function(req, res) {
