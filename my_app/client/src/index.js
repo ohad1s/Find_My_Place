@@ -7,6 +7,7 @@ function handleEnter() {
             console.log(data)
             document.getElementById("main-content").innerHTML = data;
             registerEventListeners1(); // register event listeners after changing HTML content
+            // get request from server ->> data from server
         });
 }
 
