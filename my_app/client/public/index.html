@@ -1,36 +1,134 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <title>Find My Place</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="css/table.css">
+    <script type="module" src="index.js"></script>
 </head>
-<body>
-<div id="sidebar">
-  <link rel="stylesheet" href="css/sidebar.css">
-  <button type="button" class="btn btn-primary" id="home"
-          style="width: 50%;margin-top: 10px;margin-left: 20px; font-family: 'Comic Sans MS', cursive, sans-serif;">
-    Home
-  </button>
-</div>
-<div id="main-content">
-  <div id="root"></div>
-  <h1 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Welcome to Ariel University Library!</h1>
-  <h2 style="font-family: 'Comic Sans MS', cursive, sans-serif;">Please choose your floor:</h2>
-  <div class="input-group" style="width: 50%;">
-    <select class="form-select" id="floors" style="direction: rtl;">
-      <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" selected>floor</option>
-      <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" value="f1" id="choice1" name="choice1">1</option>
-      <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" value="f2" id="choice2" name="choice2">2</option>
-      <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" value="f3" id="choice3" name="choice3">3</option>
-      <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" value="f4" id="choice4" name="choice4">4</option>
-    </select>
-  </div>
-  <div>
-    <button type="button" class="btn btn-primary" id="enter"
-            style="width: 5%;margin-top: 10px; font-family: 'Comic Sans MS', cursive, sans-serif;">
-      Enter
-    </button>
-  </div>
-</div>
 
+
+<body >
+<br>
+<div class="container-lg-fluid">
+    <div id="sidebar">
+        <link rel="stylesheet" href="css/sidebar.css">
+        <button type="button" class="btn btn-primary" id="home"
+                style="width: 60%;margin-top: 10px;margin-left: 20px; font-family: 'Comic Sans MS', cursive, sans-serif;">
+            Home
+        </button>
+    </div>
+    <div class="row" style="direction: ltr; margin: 0;">
+        <div class="col-1">
+        </div>
+        <div class="col-12">
+            <div class="container" id="first" name="main">
+                <div id="root"></div>
+                <h1 class="text-start" style="font-family: 'Comic Sans MS', cursive, sans-serif;">Welcome to Ariel University Library!</h1>
+
+                <br>
+                <h2 style="font-family: 'Comic Sans MS', cursive, sans-serif;  display: flex;justify-content: center;align-items: center;">Please choose your floor:</h2>
+                <br>
+                <div class="input-group" style="width: 15%;  display: flex;
+  justify-content: center;
+  align-items: center;">
+                    <select class="form-select" id="floors" style="direction: ltr;">
+                        <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" selected>floor</option>
+                        <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" value="f1" id="choicef1"
+                                name="choice1">1
+                        </option>
+                        <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" value="f2" id="choicef2"
+                                name="choice2">2
+                        </option>
+                        <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" value="f3" id="choicef3"
+                                name="choice3">3
+                        </option>
+                        <option style="font-family: 'Comic Sans MS', cursive, sans-serif;" value="f4" id="choicef4"
+                                name="choice4">4
+                        </option>
+                    </select>
+                </div>
+                <div style="  display: flex;
+  justify-content: center;
+  align-items: center;">
+                    <button type="button" class="btn btn-primary" id="enter"
+                            style="width: 10%;margin-top: 10px; font-family: 'Comic Sans MS', cursive, sans-serif;">
+                        Enter
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="container" id="second" name="second-click" hidden>
+                <style>
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
+                        max-width: 800px;
+                        margin: auto;
+                    }
+                    th, td {
+                        text-align: center;
+                        padding: 8px;
+                    }
+                    th {
+                        background-color: #2d6187;
+                        color: white;
+                    }
+                    td {
+                        background-color: #e4e4e4;
+                    }
+                    tr.table-full td {
+                        background-color: #ff0000;
+                        color: white;
+                    }
+                    tr.table-empty td {
+                        background-color: #00ff00;
+                    }
+                    img {
+                        display: block;
+                        max-width: 800px;
+                        margin: auto;
+                        padding-top: 20px;
+                    }
+                    h1 {
+                        font-family: 'Comic Sans MS', cursive, sans-serif;
+                        text-align: center;
+                        margin: 0 auto;
+                        display: table;
+                    }
+                </style>
+                <h1 id="floor title">Floor </h1>
+                <br>
+                <table id="table">
+                    <thead>
+                    <tr>
+                        <th>Table Number</th>
+                        <th>Seats Taken</th>
+                        <th>Max Seats</th>
+                    </tr>
+                    </thead>
+                    <tbody id="table-data">
+                    </tbody>
+                </table>
+                <img src="../pics/floor1_map.png" alt="Floor 1 Map">
+                <br>
+
+                <script src="index.js"></script>
+            </div>
+
+
+            <div class="container" id="third" name="third-click" hidden>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
 </body>
 </html>

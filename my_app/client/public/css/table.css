@@ -1,0 +1,36 @@
+#table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+}
+#th, #td {
+    text-align: center;
+    padding: 8px;
+}
+#th {
+    background-color: #2d6187;
+    color: white;
+}
+#td {
+    background-color: #e4e4e4;
+}
+#tr.table-full td {
+    background-color: #ff0000;
+    color: white;
+}
+#tr.table-empty td {
+    background-color: #00ff00;
+}
+#img {
+    display: block;
+    max-width: 800px;
+    margin: auto;
+    padding-top: 20px;
+}
+#h1 {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    margin: 0 auto;
+    display: table;
+}
