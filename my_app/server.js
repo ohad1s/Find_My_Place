@@ -5,11 +5,11 @@ import path from 'path';
 
 
 dotenv.config({path: './config/config.env'});
-
 const app = express();
 app.use(express.static('public'));
 app.use('/pics', express.static('public'));
 app.set('maxHttpHeaderSize', 64 * 1024);
+app.use(express.json());
 
 
 var connection = mysql.createConnection({
@@ -29,16 +29,6 @@ function connection_to_sql() {
         console.log('Connected to MySQL database with ID ' + connection.threadId);
     });
 }
-
-//
-// // Example query
-// connection.query('SELECT * FROM my_table', (err, results, fields) => {
-//     if (err) throw err;
-//     console.log(results);
-// });
-//
-// // Close the connection when done
-// connection.end();
 
 
 app.get('/', (req, res) => res.send('Server running'));
@@ -98,11 +88,50 @@ app.get('/f4', function (req, res) {
     });
 });
 
-app.get('/scan', function (req, res) {
-    const floorId = req.query.floor_id;
-    const tableId = req.query.table_id;
-    res.send(`Scanning floor ${floorId}, table ${tableId}`);
-    res.sendFile(process.cwd()+ '/client/public/pages/Scanning.html');
+app.post('/submit', function (req, res) {
+    const floorId = req.body.floor_id;
+    const tableId = req.body.table_id;
+    const id = req.body.id;
+    const email = req.body.email;
+    const time = req.body.time;
+
+    const currentDate = new Date();
+    const [hour, minute] = time.split(":");
+    const newDate = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate(),
+        currentDate.getHours() + hour,
+        currentDate.getMinutes() + minute
+    );
+
+    const currentDateSQL = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+    const newDateSQL = newDate.toISOString().slice(0, 19).replace('T', ' ');
+    console.log(newDate);
+    console.log(newDateSQL);
+
+    connection.query(`UPDATE Tables
+                  SET CurrentStudents = CurrentStudents + 1
+                  WHERE Floor = ${floorId} AND TableNum = ${tableId}`,
+        function (err, results) {
+            if (err) {
+                console.error('Error executing query: ' + err.stack);
+                res.status(500).json({error: 'Error executing query'});
+                return;
+            }
+            // Format the results as a JSON object and send the response
+            connection.query(`INSERT INTO Students (ID, Email,EntryTime,LeaveTime,Floor,Table_num)
+                                  VALUES (${id},'${email}','${currentDateSQL}','${newDateSQL}',${floorId},${tableId});`,
+                function (err, results) {
+                    if (err) {
+                        console.error('Error executing query: ' + err.stack);
+                        res.status(500).json({error: 'Error executing query'});
+                        return;
+                    }
+                    // Format the results as a JSON object and send the response
+                    res.json("Ciiii");
+                });
+        });
 });
 
 app.get('/ext', function (req, res) {

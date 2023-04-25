@@ -2,47 +2,7 @@
 <html>
 <head>
     <title>Welcome to the library</title>
-    <link rel="stylesheet" href="scan_style.css">
-    <script>
-        window.onload = function () {
-            // Retrieve floorId and tableId from URL query string
-            const urlParams = new URLSearchParams(window.location.search);
-            const floorId = urlParams.get('floor_id');
-            const tableId = urlParams.get('table_id');
-
-            // Populate form fields with floorId and tableId values
-            document.getElementById('floor_id').value = floorId;
-            document.getElementById('table_id').value = tableId;
-
-            // Attach event listener to form submit button
-            document.getElementById('submit-button').addEventListener('click', function (event) {
-                event.preventDefault(); // prevent default form submission
-
-                // Retrieve form data
-                const floor = document.getElementById('Floor').value;
-                const table = document.getElementById('Table').value;
-                const id = document.getElementById('ID').value;
-                const email = document.getElementById('email').value;
-                const time = document.getElementById('time').value;
-
-                // Perform form submission using AJAX
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', '/submit-form');
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState === XMLHttpRequest.DONE) {
-                        if (xhr.status === 200) {
-                            alert('Form submission successful!');
-                        } else {
-                            alert('Form submission failed.');
-                        }
-                    }
-                };
-                const formData = JSON.stringify({floor, table, id, email, time});
-                xhr.send(formData);
-            });
-        }
-    </script>
+    <link rel="stylesheet" href="../css/scan_style.css">
 </head>
 <body>
 <div class="container">
