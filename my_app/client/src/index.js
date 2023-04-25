@@ -20,8 +20,8 @@ function handleEnter() {
                 row.insertCell().textContent = obj.CurrentStudents;
                 row.insertCell().textContent = obj.MaxStudents;
             });
+            color_table();
         });
-    color_table()
 }
 
 
@@ -34,7 +34,6 @@ function handle_home() {
 
 
 function color_table() {
-    console.log("haaaaaaaaaa")
     const rows = document.querySelectorAll('table tbody tr');
     rows.forEach(row => {
         const maxSeats = parseInt(row.cells[2].textContent);
@@ -47,7 +46,6 @@ function color_table() {
             row.classList.add('table-empty');
         }
     });
-    console.log("pppppppppppppppppppppppppppppppppppppppp")
 }
 
 function registerEventListeners1() {
@@ -74,7 +72,7 @@ function registerEventListeners3(floorId, tableId) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ floor_id: floorId, table_id: tableId, id:id,email:email,time:time })
+            body: JSON.stringify({floor_id: floorId, table_id: tableId, id: id, email: email, time: time})
         })
             // .then(response => response.json())
             .then(data => console.log(data))
