@@ -1,112 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Welcome to the library</title>
-  <style>
-    body {
-      background-color: #FFFFFF;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+    <title>Welcome to the library</title>
+    <link rel="stylesheet" href="scan_style.css">
+    <script>
+        window.onload = function () {
+            // Retrieve floorId and tableId from URL query string
+            const urlParams = new URLSearchParams(window.location.search);
+            const floorId = urlParams.get('floor_id');
+            const tableId = urlParams.get('table_id');
 
-    .container {
-      width: 45%;
-      margin: 0 auto;
-      background-color: #F0F0F0;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
+            // Populate form fields with floorId and tableId values
+            document.getElementById('floor_id').value = floorId;
+            document.getElementById('table_id').value = tableId;
 
-    h1 {
-      color: #0072C6;
-      margin-top: 0;
-    }
+            // Attach event listener to form submit button
+            document.getElementById('submit-button').addEventListener('click', function (event) {
+                event.preventDefault(); // prevent default form submission
 
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-top: 20px;
-      width: 100%;
-    }
+                // Retrieve form data
+                const floor = document.getElementById('Floor').value;
+                const table = document.getElementById('Table').value;
+                const id = document.getElementById('ID').value;
+                const email = document.getElementById('email').value;
+                const time = document.getElementById('time').value;
 
-    input {
-      margin-bottom: 10px;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      width: 100%;
-      box-sizing: border-box;
-      font-size: 16px;
-      color: #333333;
-      background-color: #FFFFFF;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-      transition: box-shadow 0.3s ease-in-out;
-    }
-
-    input:focus {
-      box-shadow: 0 0 5px #0072C6;
-      outline: none;
-    }
-
-    button {
-      background-color: #0072C6;
-      color: #FFFFFF;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
-    }
-
-    button:hover {
-      background-color: #005EA2;
-    }
-
-    .logo {
-      position: absolute;
-      top: 0;
-      right: 0;
-      margin: 10px;
-      width: 100px;
-      height: 100px;
-      background-color: #FFFFFF;
-      border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .logo img {
-      width: 70%;
-      height: 70%;
-      object-fit: cover;
-    }
-  </style>
+                // Perform form submission using AJAX
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/submit-form');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            alert('Form submission successful!');
+                        } else {
+                            alert('Form submission failed.');
+                        }
+                    }
+                };
+                const formData = JSON.stringify({floor, table, id, email, time});
+                xhr.send(formData);
+            });
+        }
+    </script>
 </head>
 <body>
 <div class="container">
-  <h1>Welcome to the library</h1>
-  <form>
-    <input type="text" name="ID" placeholder="ID">
-    <input type="email" name="email" placeholder="Email">
-    <input type="time" name="time" placeholder="Time (HH:MM)">
-    <button type="submit">Enter</button>
-  </form>
-  <div class="logo">
-    <img src="../pics/Ariel_University_Logo.png" alt="Logo">
-  </div>
+    <h1>Welcome to the library</h1>
+    <form>
+        <input type="text" name="Floor" placeholder="Floor">
+        <input type="text" name="Table" placeholder="Table">
+        <input type="text" name="ID" placeholder="ID">
+        <input type="email" name="email" placeholder="Email">
+        <input type="time" name="time" placeholder="Time (HH:MM)">
+        <button type="submit" id="submit-button">Submit</button>
+    </form>
+    <div class="logo">
+        <img src="../pics/Ariel_University_Logo.png" alt="Logo">
+    </div>
 </div>
 </body>
 </html>

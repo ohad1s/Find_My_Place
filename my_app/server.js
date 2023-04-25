@@ -4,14 +4,12 @@ import mysql from 'mysql2';
 import path from 'path';
 
 
-dotenv.config({ path: './config/config.env' });
+dotenv.config({path: './config/config.env'});
 
 const app = express();
 app.use(express.static('public'));
 app.use('/pics', express.static('public'));
 app.set('maxHttpHeaderSize', 64 * 1024);
-
-
 
 
 var connection = mysql.createConnection({
@@ -22,7 +20,7 @@ var connection = mysql.createConnection({
 });
 
 
-function connection_to_sql(){
+function connection_to_sql() {
     connection.connect((err) => {
         if (err) {
             console.error('Error connecting to MySQL database: ' + err.stack);
@@ -45,67 +43,70 @@ function connection_to_sql(){
 
 app.get('/', (req, res) => res.send('Server running'));
 
-app.get('/home', function(req, res) {
+app.get('/home', function (req, res) {
     res.json({1: 'home'});
 });
 
-app.get('/f1', function(req, res) {
+app.get('/f1', function (req, res) {
     // Execute a query to retrieve data from the database
-    connection.query('SELECT * FROM Tables Where Floor = 1', function(err, results) {
+    connection.query('SELECT * FROM Tables Where Floor = 1', function (err, results) {
         if (err) {
             console.error('Error executing query: ' + err.stack);
-            res.status(500).json({ error: 'Error executing query' });
+            res.status(500).json({error: 'Error executing query'});
             return;
         }
         // Format the results as a JSON object and send the response
-        res.json({ data: results });
+        res.json({data: results});
     });
 });
 
-app.get('/f2', function(req, res) {
+app.get('/f2', function (req, res) {
     // Execute a query to retrieve data from the database
-    connection.query('SELECT * FROM Tables Where Floor = 2', function(err, results) {
+    connection.query('SELECT * FROM Tables Where Floor = 2', function (err, results) {
         if (err) {
             console.error('Error executing query: ' + err.stack);
-            res.status(500).json({ error: 'Error executing query' });
+            res.status(500).json({error: 'Error executing query'});
             return;
         }
         // Format the results as a JSON object and send the response
-        res.json({ data: results });
+        res.json({data: results});
     });
 });
 
-app.get('/f3', function(req, res) {
+app.get('/f3', function (req, res) {
     // Execute a query to retrieve data from the database
-    connection.query('SELECT * FROM Tables Where Floor = 3', function(err, results) {
+    connection.query('SELECT * FROM Tables Where Floor = 3', function (err, results) {
         if (err) {
             console.error('Error executing query: ' + err.stack);
-            res.status(500).json({ error: 'Error executing query' });
+            res.status(500).json({error: 'Error executing query'});
             return;
         }
         // Format the results as a JSON object and send the response
-        res.json({ data: results });
+        res.json({data: results});
     });
 });
-app.get('/f4', function(req, res) {
+app.get('/f4', function (req, res) {
     // Execute a query to retrieve data from the database
-    connection.query('SELECT * FROM Tables Where Floor = 4', function(err, results) {
+    connection.query('SELECT * FROM Tables Where Floor = 4', function (err, results) {
         if (err) {
             console.error('Error executing query: ' + err.stack);
-            res.status(500).json({ error: 'Error executing query' });
+            res.status(500).json({error: 'Error executing query'});
             return;
         }
         // Format the results as a JSON object and send the response
-        res.json({ data: results });
+        res.json({data: results});
     });
 });
 
-app.get('/scan', function(req, res) {
+app.get('/scan', function (req, res) {
+    const floorId = req.query.floor_id;
+    const tableId = req.query.table_id;
+    res.send(`Scanning floor ${floorId}, table ${tableId}`);
     res.sendFile(process.cwd()+ '/client/public/pages/Scanning.html');
 });
 
-app.get('/ext', function(req, res) {
-    res.sendFile(process.cwd()+ '/client/public/pages/extension.html');
+app.get('/ext', function (req, res) {
+    res.sendFile(process.cwd() + '/client/public/pages/extension.html');
 });
 
 
