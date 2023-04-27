@@ -3,7 +3,7 @@ from pathlib import Path
 secrets_json_path = Path(__file__).parent/"jsons/secrets.json"
 
 
-class Secrets():
+class Get_secrets():
 
     def __init__(self) -> None:
         with secrets_json_path.open() as secrets_json:

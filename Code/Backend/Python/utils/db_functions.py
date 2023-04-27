@@ -1,8 +1,23 @@
-from secrets import Secrets
 import mysql.connector
 from datetime import datetime, timedelta
 from pprint import pprint
-secrets: Secrets = Secrets()
+from pathlib import Path
+import sys
+import json
+secrets_json_path = Path(__file__).parent/"jsons/secrets.json"
+
+
+class Get_secrets():
+
+    def __init__(self) -> None:
+        with secrets_json_path.open() as secrets_json:
+            secrets = json.load(secrets_json)
+        self.db_host = secrets["db_host"]
+        self.db_password = secrets["db_password"]
+        self.db_user = secrets["db_user"]
+        self.db = secrets["db"]
+
+secrets: Get_secrets = Get_secrets()
 
 
 def connect_to_db():

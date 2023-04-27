@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
-from db_functions import get_floor_data, insert_student_submission
+from utils.db_functions import get_floor_data, insert_student_submission
 from datetime import datetime, timedelta
 
 
