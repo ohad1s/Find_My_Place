@@ -95,8 +95,9 @@ def insert_student_submission(id: int,
                               table_num: int):
     query = f"""
     INSERT INTO Students (ID, Email, EntryTime, LeaveTime, Floor, TableNum, IsReminded)
-    VALUES ({id}, {email}, NOW(), {str(leave_time)}, {floor}, {table_num}, 0)
+    VALUES ({id}, '{email}', NOW(), '{str(leave_time)}', {floor}, {table_num}, 0)
     """
+    print(query)
     res = generic_change_query(query)
     return res
 

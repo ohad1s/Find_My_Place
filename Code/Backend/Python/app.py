@@ -42,16 +42,16 @@ class submit_form(Resource):
     def post(self):
         floor = request.args.get("floor_id")
         table_num = request.args.get("table_id")
-        id = request.args.get("id")
+        student_id = request.args.get("id")
         email = request.args.get("email")
         time = request.args.get("time")
         time_splitted = time.split(':')
-        hours = time_splitted[0]
-        minutes = time_splitted[1]
-        current_time = timedelta.now()
+        hours = int(time_splitted[0])
+        minutes = int(time_splitted[1])
+        current_time = datetime.now()
         stay_interval = timedelta(hours=hours, minutes=minutes)
         leave_time = current_time + stay_interval
-        insert_student_submission(id=id,
+        insert_student_submission(id=student_id,
                                   email=email,
                                   leave_time=leave_time,
                                   floor=floor,
