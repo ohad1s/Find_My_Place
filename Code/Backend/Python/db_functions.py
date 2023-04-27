@@ -1,6 +1,7 @@
 from secrets import Secrets
 import mysql.connector
 from datetime import datetime, timedelta
+from pprint import pprint
 secrets: Secrets = Secrets()
 
 
@@ -78,7 +79,7 @@ def insert_student_submission(id: int,
                               floor: int,
                               table_num: int):
     query = f"""
-    INSERT INTO Students (ID, Email, EntryTime, LeaveTime, Floor, Table_num, IsReminded)
+    INSERT INTO Students (ID, Email, EntryTime, LeaveTime, Floor, TableNum, IsReminded)
     VALUES ({id}, {email}, NOW(), {str(leave_time)}, {floor}, {table_num}, 0)
     """
     res = generic_change_query(query)
@@ -93,3 +94,43 @@ def extend_student_time(student_id: int, extend_time: str):
     """
     res = generic_change_query(query)
     return res
+
+
+def get_students_left_tables():
+    query = f"""
+        SELECT ID,Floor,TableNum FROM Students
+        WHERE LeaveTime < NOW()
+        """
+    res = generic_query(query)
+    return res
+
+
+def delete_student(id):
+    query = f"""
+       DELETE FROM Students
+       WHERE ID = {id}
+    """
+    res = generic_change_query(query)
+    print(res)
+
+
+def update_table_current_students(floor, table_num):
+    query = f"""
+        UPDATE Tables
+        SET CurrentStudents = CurrentStudents - 1
+        WHERE Floor = {floor}
+        AND TableNum = {table_num}
+    """
+    res = generic_change_query(query)
+    print(f"Updated Floor {floor} Table Number {table_num}")
+
+
+def clear_students_and_update_tables():
+    tables_to_update = get_students_left_tables()
+    for student_data in tables_to_update:
+        pprint(student_data)
+        stuednt_id = student_data['ID']
+        floor = student_data['Floor']
+        table_num = student_data['TableNum']
+        update_table_current_students(floor, table_num)
+        delete_student(stuednt_id)
