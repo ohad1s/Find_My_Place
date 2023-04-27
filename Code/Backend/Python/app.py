@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
-from utils.db_functions import get_floor_data, insert_student_submission
+from utils.db_functions import get_floor_data, insert_student_submission, extend_student_time
 from datetime import datetime, timedelta
 
 
@@ -56,6 +56,7 @@ class extend_stay(Resource):
     def post(self):
         student_id = request.args.get("id")
         extend_time = request.args.get("extend_time")
+        extend_student_time(student_id, extend_time)
 
 
 api.add_resource(floor_one, "/f1")
