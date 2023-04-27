@@ -149,3 +149,4 @@ def clear_students_and_update_tables():
         table_num = student_data['TableNum']
         update_table_current_students(floor, table_num)
         delete_student(stuednt_id)
+    print("finished round!!")

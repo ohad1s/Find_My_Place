@@ -1,12 +1,18 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
-from utils.db_functions import get_floor_data, insert_student_submission, extend_student_time
+from utils.db_functions import get_floor_data, insert_student_submission, extend_student_time, clear_students_and_update_tables
 from datetime import datetime, timedelta
-
+from time import sleep
+import threading
 
 app = Flask(__name__)
 api = Api(app)
 
+def clean_db():
+    # db_functions = importlib.import_module("db_functions")
+    while True:
+        clear_students_and_update_tables()
+        sleep(60)
 
 class floor_one(Resource):
     def get(self):
@@ -68,3 +74,4 @@ api.add_resource(extend_stay, "/ext")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
+    print("started db cleaning thread")
