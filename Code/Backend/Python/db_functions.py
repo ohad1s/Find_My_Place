@@ -82,3 +82,14 @@ def insert_student_submission(id: int,
     VALUES ({id}, {email}, NOW(), {str(leave_time)}, {floor}, {table_num}, 0)
     """
     res = generic_change_query(query)
+    return res
+
+
+def extend_student_time(student_id: int, extend_time: str):
+    query = f"""
+    UPDATE Library.Students
+    SET LeaveTime = DATE_ADD(LeaveTime, INTERVAL '{extend_time}' HOUR_MINUTE)
+    WHERE ID = {student_id}
+    """
+    res = generic_change_query(query)
+    return res

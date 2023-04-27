@@ -54,7 +54,8 @@ class submit_form(Resource):
 
 class extend_stay(Resource):
     def post(self):
-        pass
+        student_id = request.args.get("id")
+        extend_time = request.args.get("extend_time")
 
 
 api.add_resource(floor_one, "/f1")
@@ -62,5 +63,7 @@ api.add_resource(floor_two, "/f2")
 api.add_resource(floor_three, "/f3")
 api.add_resource(floor_four, "/f4")
 api.add_resource(submit_form, "/submit")
+api.add_resource(extend_stay, "/ext")
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
