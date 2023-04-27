@@ -8,12 +8,6 @@ import threading
 app = Flask(__name__)
 api = Api(app)
 
-def clean_db():
-    # db_functions = importlib.import_module("db_functions")
-    while True:
-        clear_students_and_update_tables()
-        sleep(60)
-
 class floor_one(Resource):
     def get(self):
         data = get_floor_data(1)
