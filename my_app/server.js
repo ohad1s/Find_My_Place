@@ -134,8 +134,21 @@ app.post('/submit', function (req, res) {
         });
 });
 
-app.get('/ext', function (req, res) {
-    res.sendFile(process.cwd() + '/client/public/pages/extension.html');
+app.post('/enter_extend', function (req, res) {
+    const id = req.body.id;
+    const time = req.body.extend_time;
+
+
+    connection.query(`INSERT INTO Students (ID, Email, EntryTime, LeaveTime, Floor, TableNum, IsReminded)
+    VALUES ('${id}', '${email}', NOW(), '${leave_time}', {floor}, {table_num}, 0)`,
+        function (err, results) {
+            if (err) {
+                console.error('Error executing query: ' + err.stack);
+                res.status(500).json({error: 'Error executing query'});
+                return;
+            }
+            // Format the results as a JSON object and send the response
+        });
 });
 
 

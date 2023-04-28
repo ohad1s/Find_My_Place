@@ -64,7 +64,7 @@ api.add_resource(floor_two, "/f2")
 api.add_resource(floor_three, "/f3")
 api.add_resource(floor_four, "/f4")
 api.add_resource(submit_form, "/submit")
-api.add_resource(extend_stay, "/ext")
+api.add_resource(extend_stay, "/enter_extend")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

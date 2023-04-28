@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" type="text/css" href="css/table.css">
     <link rel="stylesheet" href="css/scan_style.css">
+    <link rel="stylesheet" href="css/extend_style.css">
     <script type="module" src="index.js"></script>
 </head>
 
@@ -132,6 +133,25 @@
                 </form>
                 <div class="logo">
                     <img src="../pics/Ariel_University_Logo.png" alt="Logo">
+                </div>
+            </div>
+
+
+            <div class="container" id="four" name="fourth-click" hidden>
+                <h1>Your time is almost up!
+                    <br>
+                    Would you like to extend your stay?</h1>
+                <div class="button-container">
+                    <button id="no-button">No</button>
+                </div>
+                <div id="input-container" class="input-container hidden">
+                    <p>If so, how long would you like to extend?</p>
+                </div>
+                <div id="input-container2" class="input-container hidden2">
+                    <input type="time" name="time" id="time_to_add" placeholder="Time (HH:MM)">
+                    <div class="enter-button">
+                        <button id="enter-button">Enter</button>
+                    </div>
                 </div>
             </div>
 

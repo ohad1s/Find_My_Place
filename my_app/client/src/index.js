@@ -2,6 +2,8 @@ function handleEnter() {
     document.getElementById("first").hidden = true
     document.getElementById("second").hidden = false
     document.getElementById("third").hidden = true
+    document.getElementById("four").hidden = true
+
     const floors = document.getElementById("floors");
     console.log("cii")
     const selectedFloor = floors.options[floors.selectedIndex].value;
@@ -29,6 +31,8 @@ function handle_home() {
     document.getElementById("first").hidden = false
     document.getElementById("second").hidden = true
     document.getElementById("third").hidden = true
+    document.getElementById("four").hidden = true
+
     registerEventListeners2(); // register event listeners after changing HTML content
 }
 
@@ -80,11 +84,42 @@ function registerEventListeners3(floorId, tableId) {
     });
 }
 
+function registerEventListeners4(floorId, tableId,id){
+    const noButton = document.getElementById("no-button");
+    const time_to_add = document.getElementById("time_to_add");
+    const enterButton = document.getElementById("enter-button");
+    console.log(floorId,tableId,id);
+
+    noButton.addEventListener("click", () => {
+        // window.open('', '_self', '');
+        window.close();
+    });
+
+    enterButton.addEventListener("click", () => {
+        const time_val= time_to_add.value;
+        console.log(`You entered: ${time_val}`);
+
+        fetch('/enter_extend', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id: id, extend_time: time_val})
+        })
+            // .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+
+    });
+}
+
 
 function OnScanning() {
     document.getElementById("first").hidden = true
     document.getElementById("second").hidden = true
     document.getElementById("third").hidden = false
+    document.getElementById("four").hidden = true
+
     // Retrieve floorId and tableId from URL query string
     const urlParams = new URLSearchParams(window.location.search);
     const floorId = urlParams.get('floor_id');
@@ -92,11 +127,29 @@ function OnScanning() {
     registerEventListeners3(floorId, tableId);
 }
 
+
+function OnExtend() {
+    document.getElementById("first").hidden = true
+    document.getElementById("second").hidden = true
+    document.getElementById("third").hidden = true
+    document.getElementById("four").hidden = false
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const floorId = urlParams.get('floor_id');
+    const tableId = urlParams.get('table_id');
+    const id = urlParams.get('id');
+    registerEventListeners4(floorId, tableId,id);
+
+}
+
 // Call registerEventListeners() on page load
 registerEventListeners1();
 registerEventListeners2();
 if (window.location.pathname === '/scan') {
     OnScanning();
+}
+if (window.location.pathname === '/ext') {
+    OnExtend();
 }
 
 
