@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
+from flask_cors import CORS
 from utils.db_functions import get_floor_data, insert_student_submission, extend_student_time, \
     clear_students_and_update_tables
 from datetime import datetime, timedelta
@@ -8,6 +9,7 @@ import threading
 
 app = Flask(__name__)
 api = Api(app)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 class floor_one(Resource):
