@@ -79,20 +79,23 @@ function registerEventListeners3(floorId, tableId) {
             body: JSON.stringify({floor_id: floorId, table_id: tableId, id: id, email: email, time: time})
         })
             // .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                alert("Thank you!");
+                handle_home();
+            })
             .catch(error => console.error(error));
     });
 }
 
-function registerEventListeners4(floorId, tableId,id){
+function registerEventListeners4(id){
     const noButton = document.getElementById("no-button");
     const time_to_add = document.getElementById("time_to_add");
     const enterButton = document.getElementById("enter-button");
-    console.log(floorId,tableId,id);
+    console.log(id);
 
     noButton.addEventListener("click", () => {
-        // window.open('', '_self', '');
-        window.close();
+        alert("Thank you!");
+           handle_home();
     });
 
     enterButton.addEventListener("click", () => {
@@ -107,7 +110,10 @@ function registerEventListeners4(floorId, tableId,id){
             body: JSON.stringify({id: id, extend_time: time_val})
         })
             // .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                alert("Thank you!");
+                    handle_home();
+            })
             .catch(error => console.error(error));
 
     });
@@ -135,10 +141,8 @@ function OnExtend() {
     document.getElementById("four").hidden = false
 
     const urlParams = new URLSearchParams(window.location.search);
-    const floorId = urlParams.get('floor_id');
-    const tableId = urlParams.get('table_id');
     const id = urlParams.get('id');
-    registerEventListeners4(floorId, tableId,id);
+    registerEventListeners4(id);
 
 }
 
