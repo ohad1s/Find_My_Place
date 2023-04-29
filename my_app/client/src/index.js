@@ -67,16 +67,16 @@ function registerEventListeners3(floorId, tableId) {
     document.getElementById('submit-button').addEventListener('click', function (event) {
         event.preventDefault(); // prevent default form submission
 
-        const id = document.getElementById('ID').value;
-        const email = document.getElementById('email').value;
-        const time = document.getElementById('time').value;
-
+        const id_ = document.getElementById('ID').value;
+        const email_ = document.getElementById('email').value;
+        const time_ = document.getElementById('time').value;
+        console.log(time_);
         fetch('/submit', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({floor_id: floorId, table_id: tableId, id: id, email: email, time: time})
+            body: JSON.stringify({floor_id: floorId, table_id: tableId, id: id_, email: email_, time_: time_})
         })
             // .then(response => response.json())
             .then(data => {
