@@ -76,7 +76,7 @@ function registerEventListeners3(floorId, tableId) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({floor_id: floorId, table_id: tableId, id: id_, email: email_, time_: time_})
+            body: JSON.stringify({floor_id: floorId, table_id: tableId, id: id_, email: email_, time: time_})
         })
             // .then(response => response.json())
             .then(data => {
