@@ -2,4 +2,5 @@ pillow
 qrcode
 flask
 flask-restful
+flask-cores
 mysql-connector-python
