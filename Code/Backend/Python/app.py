@@ -38,11 +38,12 @@ class floor_four(Resource):
 
 class submit_form(Resource):
     def post(self):
-        floor = request.args.get("floor_id")
-        table_num = request.args.get("table_id")
-        student_id = request.args.get("id")
-        email = request.args.get("email")
-        time = request.args.get("time")
+        data = request.json
+        floor = data["floor_id"]
+        table_num = data["table_id"]
+        student_id = data["id"]
+        email = data["email"]
+        time = data["time"]
         time_splitted = time.split(':')
         hours = int(time_splitted[0])
         minutes = int(time_splitted[1])
@@ -58,8 +59,9 @@ class submit_form(Resource):
 
 class extend_stay(Resource):
     def post(self):
-        student_id = request.args.get("id")
-        extend_time = request.args.get("extend_time")
+        data = request.json
+        student_id = data["id"]
+        extend_time = data["extend_time"]
         extend_student_time(student_id, extend_time)
 
 
