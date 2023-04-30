@@ -1,11 +1,12 @@
 import smtplib
 import ssl
+import time
 from email.message import EmailMessage
 from pprint import pprint
 
 from Code.Backend.Python.utils import get_students_to_send_mail, update_student_is_reminded
 
-
+PORT = '63342'
 def send_email(sender_email: str, email_password: str, context, receiver_email: str, msg: EmailMessage) -> None:
     try:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
@@ -21,7 +22,6 @@ def create_mail(sender_email: str, receiver_email: str, subject: str, button_lin
     msg['From'] = sender_email
     msg['To'] = receiver_email
     msg['Subject'] = subject
-    # create the HTML content of the email body
     html_body = f"""\
     <html>
     <head>
@@ -50,14 +50,15 @@ def create_mail(sender_email: str, receiver_email: str, subject: str, button_lin
         </style>
     </head>
     <body>
-    <p> עוד 15 דקות נגמר הזמן! </p>
-    <p> אם ברצונך להאריך את זמן הישיבה לחץ על הכפתור </p>
+    <p> סטודנט יקר! כאן הספרייה, בעוד כ 15 דקות זמן הישיבה שלך נגמר. </p>
+    <p> אם ברצונך להאריך את זמן הישיבה לחץ על הכפתור👇 </p>
     <p><a href="{button_link}">
         <button><span>Click Here</span><i></i></button>
     </a></p>
     </body>
     </html>
     """
+
     msg.add_alternative(html_body, subtype='html')
     return msg
 
@@ -72,8 +73,10 @@ def create_and_send(receiver_email: str, button_link: str):
 
 
 if __name__ == '__main__':
-    students_to_update = get_students_to_send_mail()
-    for student_data in students_to_update:
-        pprint(student_data)
-        create_and_send(student_data["Email"], f"http://localhost:3000/ext?id={student_data['ID']}")
-        update_student_is_reminded(student_data['ID'])
+    while True:
+        students_to_update = get_students_to_send_mail()
+        for student_data in students_to_update:
+            pprint(student_data)
+            create_and_send(student_data["Email"], f"http://localhost:{PORT}/Find_My_Place/Code/front/extend.html?id={student_data['ID']}")
+            update_student_is_reminded(student_data['ID'])
+        time.sleep(60)
