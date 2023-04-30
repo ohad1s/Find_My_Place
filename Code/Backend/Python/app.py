@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api
 from flask_cors import CORS
 from utils.db_functions import get_floor_data, insert_student_submission, extend_student_time, \
-    clear_students_and_update_tables
+    clear_students_and_update_tables, update_current_students
 from datetime import datetime, timedelta
 from time import sleep
 import threading
@@ -55,6 +55,8 @@ class submit_form(Resource):
                                   leave_time=leave_time,
                                   floor=floor,
                                   table_num=table_num)
+        update_current_students(floor=floor,
+                                table_num=table_num)
 
 
 class extend_stay(Resource):

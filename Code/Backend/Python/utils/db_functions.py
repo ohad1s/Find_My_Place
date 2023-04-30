@@ -4,7 +4,8 @@ from pprint import pprint
 from pathlib import Path
 import sys
 import json
-secrets_json_path = Path(__file__).parent/"jsons/secrets.json"
+
+secrets_json_path = Path(__file__).parent / "jsons/secrets.json"
 
 
 class Get_secrets():
@@ -16,6 +17,7 @@ class Get_secrets():
         self.db_password = secrets["db_password"]
         self.db_user = secrets["db_user"]
         self.db = secrets["db"]
+
 
 secrets: Get_secrets = Get_secrets()
 
@@ -98,6 +100,18 @@ def insert_student_submission(id: int,
     VALUES ({id}, '{email}', NOW(), '{str(leave_time)}', {floor}, {table_num}, 0)
     """
     print(query)
+    res = generic_change_query(query)
+    return res
+
+
+def update_current_students(floor: int,
+                            table_num: int):
+    query = f"""
+        UPDATE Tables
+        SET CurrentStudents = CurrentStudents + 1
+        WHERE Floor = {floor}
+        AND TableNum = {table_num}
+    """
     res = generic_change_query(query)
     return res
 
