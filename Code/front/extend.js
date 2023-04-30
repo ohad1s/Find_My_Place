@@ -5,8 +5,6 @@ function on_extend() {
     const noButton = document.getElementById("no-button");
     const time_to_add = document.getElementById("time_to_add");
     const enterButton = document.getElementById("enter-button");
-    console.log(id);
-
     noButton.addEventListener("click", () => {
         alert("Thank you!");
         window.location.href = "./index.html";
@@ -26,6 +24,9 @@ function on_extend() {
                 alert("Thank you!");
                 window.location.href = "./index.html";
             })
-            .catch(error => console.error(error));
+            .catch(error => {
+                alert("שגיאה! בדוק שוב את השדות");
+                console.error(error)
+            });
     });
 }
