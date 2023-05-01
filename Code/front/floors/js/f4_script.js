@@ -18,7 +18,7 @@ function generatePage(data) {
     tableHtml += '</tbody>\n</table>\n';
 
     // Create the photo HTML content
-    const photoHtml = '<div><img src="lib_floors/f4.jpeg" alt="A photo"></div>\n';
+    const photoHtml = '<div><img src="../img/f4.jpeg" alt="A photo"></div>\n';
 
     // Create the "Return" button HTML content
     const buttonHtml = '<div class="sidenav"><button class="home-button" onclick="window.location.href=\'../index.html\';">Home</button></div>\n';

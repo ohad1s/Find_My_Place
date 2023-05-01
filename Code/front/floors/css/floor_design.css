@@ -97,7 +97,7 @@ h1 {
     width: 100px;
 }
 body{
-    background-image: url("../ariel_library.png");
+    background-image: url("../../img/ariel_library.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

@@ -2,7 +2,7 @@ SERVER = "http://localhost:5000"
 
 function generatePage(data) {
     // Create the table HTML content
-    let title = '<h1 class="title">Floor 2</h1>'
+    let title = '<h1 class="title">Floor 1</h1>'
     let tableHtml = '<table class="cool-table">\n' +
         '<thead>\n' +
         '<tr><th>Table Number</th><th>Current Students</th><th>Max Students</th></tr>\n' +
@@ -18,7 +18,7 @@ function generatePage(data) {
     tableHtml += '</tbody>\n</table>\n';
 
     // Create the photo HTML content
-    const photoHtml = '<div><img src="lib_floors/f2.jpeg" alt="A photo"></div>\n';
+    const photoHtml = '<div><img src="../img/f1.jpeg" alt="A photo"></div>\n';
 
     // Create the "Return" button HTML content
     const buttonHtml = '<div class="sidenav"><button class="home-button" onclick="window.location.href=\'../index.html\';">Home</button></div>\n';
@@ -29,7 +29,7 @@ function generatePage(data) {
     // Return the HTML content as a string
     return html;
 }
-fetchTemplate("f2")
+fetchTemplate("f1")
 function fetchTemplate(pageName) {
     fetch(SERVER + `/${pageName}`)
         .then(response => response.json())
@@ -40,6 +40,7 @@ function fetchTemplate(pageName) {
         })
         .catch(error => console.error(error));
 }
+
 function color_table() {
     const rows = document.querySelectorAll('table tbody tr');
     rows.forEach(row => {
@@ -54,4 +55,3 @@ function color_table() {
         }
     });
 }
-

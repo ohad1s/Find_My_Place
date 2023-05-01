@@ -31,7 +31,7 @@ function on_scanning() {
             // .then(response => response.json())
             .then(data => {
                 alert("Thank you!");
-                window.location.href = "./index.html";
+                window.location.href = "../html/index.html";
             })
             .catch(error => {
                 alert("שגיאה! בדוק שוב את השדות");

@@ -7,7 +7,7 @@ function on_extend() {
     const enterButton = document.getElementById("enter-button");
     noButton.addEventListener("click", () => {
         alert("Thank you!");
-        window.location.href = "./index.html";
+        window.location.href = "../html/index.html";
     });
 
     enterButton.addEventListener("click", () => {
@@ -22,7 +22,7 @@ function on_extend() {
         })
             .then(data => {
                 alert("Thank you!");
-                window.location.href = "./index.html";
+                window.location.href = "../html/index.html";
             })
             .catch(error => {
                 alert("שגיאה! בדוק שוב את השדות");
