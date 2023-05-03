@@ -1,5 +1,5 @@
 import mysql.connector
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pprint import pprint
 from pathlib import Path
 import sys
@@ -67,7 +67,7 @@ def get_floor_data(floor_num: int):
 
 
 def get_students_to_send_mail():
-    now = datetime.now()
+    now = datetime.now(timezone.utc)
     fifteen_minutes = timedelta(minutes=15)
     leave_time_to_remind = now + fifteen_minutes
     query = f"""

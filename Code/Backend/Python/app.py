@@ -3,7 +3,7 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 from utils.db_functions import get_floor_data, insert_student_submission, extend_student_time, \
     clear_students_and_update_tables, update_current_students
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from time import sleep
 import threading
 
@@ -47,7 +47,7 @@ class submit_form(Resource):
         time_splitted = time.split(':')
         hours = int(time_splitted[0])
         minutes = int(time_splitted[1])
-        current_time = datetime.now()
+        current_time = datetime.now(timezone.utc)
         stay_interval = timedelta(hours=hours, minutes=minutes)
         leave_time = current_time + stay_interval
         insert_student_submission(id=student_id,
