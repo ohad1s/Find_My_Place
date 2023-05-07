@@ -1,73 +1,33 @@
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-}
-
-th, td {
-    text-align: center;
-    padding: 8px;
-}
-
-th {
-    background-color: #2d6187;
-    color: white;
-}
-
-td {
-    background-color: #e4e4e4;
-}
-
-tr.table-full td {
-    background-color: #ff0000;
-    color: white;
-}
-
-tr.table-empty td {
-    background-color: #00ff00;
-}
-
-img {
-    display: block;
-    max-width: 800px;
-    margin: auto;
-    padding-top: 20px;
-}
-
 h1 {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-family: 'serif';
     text-align: center;
-    margin: 0 auto;
     margin-bottom: 10px;
-    display: table;
+    margin-top: 10px;
+    padding: 10px;
+    -webkit-text-stroke: 1px white;
+    color: #0d6efd;
+    font-size: 70px;
 }
 
-.sidenav {
-    height: 100%;
-    width: 160px;
-    position: fixed;
+
+.navbar {
+    width: 100%;
+    position: absolute;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: #1c207e;
     overflow-x: hidden;
-    padding-top: 20px;
 }
 
-.sidenav button {
+.navbar button {
     margin: 10px;
     text-decoration: none;
-    /*font-size: 25px;*/
-    /*color: #818181;*/
-    /*display: block;*/
     font-family: 'Comic Sans MS', cursive, sans-serif;
     cursor: pointer;
     outline: 0;
     color: #fff;
     background-color: #0d6efd;
-    /*border-color: #0d6efd;*/
     display: inline-block;
     font-weight: 400;
     line-height: 1.5;
@@ -80,44 +40,32 @@ h1 {
 }
 
 @media screen and (max-height: 450px) {
-    .sidenav {
+    .navbar {
         padding-top: 15px;
     }
 
-    .sidenav button {
+    .navbar button {
         font-size: 18px;
     }
 }
 
-.sidenav {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 100px;
+img {
+    display: block;
+    max-width: 800px;
+    margin: auto;
+    padding-top: 20px;
 }
-body{
-    background-image: url("../../img/ariel_library.png");
+
+body {
+    background-image: url("../ariel_library.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-}
-#th, #td {
-    text-align: center;
-    padding: 8px;
-}
-#th {
-    background-color: #2d6187;
-    color: white;
-}
-#td {
-    background-color: #e4e4e4;
-}
-#tr.table-full td {
-    background-color: #ff0000;
-    color: white;
-}
-#tr.table-empty td {
-    background-color: #00ff00;
+    /*padding-top: 120px;*/
+    padding: 100px;
 }
 
+img:hover {
+    transform: scale(1.5); /* Increase the size by 10% */
+    transition: transform 0.5s; /* Add a smooth transition effect */
+}

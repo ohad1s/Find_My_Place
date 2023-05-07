@@ -1,35 +1,46 @@
 SERVER = "http://localhost:5000"
 
 function generatePage(data) {
-    // Create the table HTML content
     let title = '<h1 class="title">Floor 1</h1>'
-    let tableHtml = '<table class="cool-table">\n' +
-        '<thead>\n' +
-        '<tr><th>Table Number</th><th>Current Students</th><th>Max Students</th></tr>\n' +
-        '</thead>\n' +
-        '<tbody>\n';
 
+    let tableHtml = '';
+    const numCardsPerRow = 6; // Change this to the desired number of cards per row
     for (let i = 0; i < data.length; i++) {
         const table = data[i];
-        const rowHtml = `<tr><td>${table.TableNum}</td><td>${table.CurrentStudents}</td><td>${table.MaxStudents}</td></tr>\n`;
-        tableHtml += rowHtml;
+        const cardHtml = `
+          <div class="col-md-2 mb-3">
+           <div class="card ${table.CurrentStudents >= 0 && table.CurrentStudents < table.MaxStudents / 2 ? 'bg-success' : (table.CurrentStudents >= table.MaxStudents / 2 && table.CurrentStudents < table.MaxStudents ? 'bg-warning' : 'bg-danger')}">
+            <div class="card-body">
+              <h5 class="card-title">Table ${table.TableNum}</h5>
+              <p class="card-text">Current students: ${table.CurrentStudents}</p>
+              <p class="card-text">Max students: ${table.MaxStudents}</p>
+            </div>
+          </div>
+        </div>`;
+        if (i % numCardsPerRow === 0) {
+            tableHtml += '<div class="row">';
+        }
+        tableHtml += cardHtml;
+        if ((i + 1) % numCardsPerRow === 0 || i === data.length - 1) {
+            tableHtml += '</div>';
+        }
     }
-
-    tableHtml += '</tbody>\n</table>\n';
 
     // Create the photo HTML content
     const photoHtml = '<div><img src="../img/f1.jpeg" alt="A photo"></div>\n';
 
     // Create the "Return" button HTML content
-    const buttonHtml = '<div class="sidenav"><button class="home-button" onclick="window.location.href=\'../index.html\';">Home</button></div>\n';
+    const buttonHtml = '<div class="navbar"><button class="home-button" onclick="window.location.href=\'../index.html\';">Home</button></div>\n';
 
     // Combine the table, photo, and button HTML into a single string
-    const html = title + tableHtml + photoHtml + buttonHtml;
+    const html = buttonHtml + title + tableHtml + photoHtml;
 
     // Return the HTML content as a string
     return html;
 }
+
 fetchTemplate("f1")
+
 function fetchTemplate(pageName) {
     fetch(SERVER + `/${pageName}`)
         .then(response => response.json())
@@ -39,19 +50,4 @@ function fetchTemplate(pageName) {
             color_table();
         })
         .catch(error => console.error(error));
-}
-
-function color_table() {
-    const rows = document.querySelectorAll('table tbody tr');
-    rows.forEach(row => {
-        const maxSeats = parseInt(row.cells[2].textContent);
-        const seatsTaken = parseInt(row.cells[1].textContent);
-        if (maxSeats <= seatsTaken) {
-            row.classList.remove('table-empty');
-            row.classList.add('table-full');
-        } else {
-            row.classList.remove('table-full');
-            row.classList.add('table-empty');
-        }
-    });
 }
