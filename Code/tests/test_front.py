@@ -11,7 +11,7 @@ class PythonOrgSearch(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome(r"C:\Users\dvir1\webdriver\chromedriver")
 
-    @unittest.skip("")
+    # @unittest.skip("")
     def test_index(self):
         driver = self.driver
         driver.get("http://findmyplace.online/")
@@ -27,7 +27,7 @@ class PythonOrgSearch(unittest.TestCase):
         self.assertEqual(selected_option.text, "Floor 2")
         self.assertEqual(selected_option.get_attribute("value"), "f2")
 
-    @unittest.skip("skipping test_submit because it's not implemented yet")
+    # @unittest.skip("")
     def test_floor(self):
         driver = self.driver
         driver.get("http://findmyplace.online/floors/f1_page.html")
@@ -39,10 +39,11 @@ class PythonOrgSearch(unittest.TestCase):
         driver.get("http://findmyplace.online/floors/f4_page.html")
         self.assertIn("Floor 4", driver.title)
 
+    # @unittest.skip("")
     def test_extend(self):
         driver = self.driver
         driver.get("http://findmyplace.online/extend.html")
-        # self.assertIn("Extend", driver.title)
+        self.assertIn("Extend", driver.title)
         no_button = driver.find_element(By.ID, "no-button")
         assert no_button.is_displayed() and no_button.is_enabled()
         enter_button = driver.find_element(By.ID, "enter-button")
@@ -53,14 +54,16 @@ class PythonOrgSearch(unittest.TestCase):
         input_field = driver.find_element(By.ID, "input-container2")
         assert not input_field.is_displayed()
 
+    # @unittest.skip("")
     def test_submit(self):
         driver = self.driver
         driver.get("http://findmyplace.online/submit.html")
+        self.assertIn("Extend", driver.title)
         id_field = self.driver.find_element(By.ID, "ID")
         email_field = self.driver.find_element(By.ID, "email")
         time_field = self.driver.find_element(By.ID, "time")
         submit_button = self.driver.find_element(By.ID, "submit-button")
-
+        assert id_field.is_displayed() and email_field.is_displayed() and time_field.is_displayed() and submit_button.is_enabled()
         # Leave all fields blank
         submit_button.click()
         try:
