@@ -30,7 +30,7 @@ function generatePage(data) {
     const photoHtml = '<div><img src="../img/f3.jpeg" alt="A photo"></div>\n';
 
     // Create the "Return" button HTML content
-    const buttonHtml = '<div class="navbar"><button class="home-button" onclick="window.location.href=\'../index.html\';">Home</button></div>\n';
+    const buttonHtml = '<div class="navbar"><button class="home-button" onclick="window.location.href=\'Code/Frontend/html/index.html\';">Home</button></div>\n';
 
     // Combine the table, photo, and button HTML into a single string
     const html = buttonHtml + title + tableHtml + photoHtml;
