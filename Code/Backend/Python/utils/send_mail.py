@@ -4,7 +4,7 @@ import time
 from email.message import EmailMessage
 from pprint import pprint
 
-from Code.Backend.Python.utils import get_students_to_send_mail, update_student_is_reminded
+from db_functions import get_students_to_send_mail, update_student_is_reminded
 
 PORT = '63342'
 def send_email(sender_email: str, email_password: str, context, receiver_email: str, msg: EmailMessage) -> None:

@@ -489,3 +489,63 @@ Press CTRL+C to quit
 62.90.3.89 - - [08/May/2023 07:38:36] "OPTIONS /submit HTTP/1.1" 200 -
 62.90.3.89 - - [08/May/2023 07:38:36] "POST /submit HTTP/1.1" 200 -
 62.90.3.89 - - [08/May/2023 07:38:41] "GET /f1 HTTP/1.1" 200 -
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/utils/mail_handlaing/send_mail.py', reloading
+
+    INSERT INTO Students (ID, Email, EntryTime, LeaveTime, Floor, TableNum, IsReminded)
+    VALUES (255566555, 'itamarq@gmail.com', NOW(), '2023-05-08 20:38:36.720539+00:00', 1, 1, 0)
+    
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/utils/mail_handlaing/send_mail.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/utils/send_mail.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+62.90.3.89 - - [08/May/2023 07:51:10] "OPTIONS /enter_extend HTTP/1.1" 200 -
+62.90.3.89 - - [08/May/2023 07:51:11] "POST /enter_extend HTTP/1.1" 200 -
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/QR_generator/QR_code_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/QR_generator/QR_code_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+109.253.211.83 - - [08/May/2023 08:39:29] "OPTIONS /submit HTTP/1.1" 200 -
+109.253.211.83 - - [08/May/2023 08:39:29] "POST /submit HTTP/1.1" 200 -
+62.90.3.89 - - [08/May/2023 08:40:25] "GET /f1 HTTP/1.1" 200 -
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/QR_generator/QR_code_generator.py', reloading
+
+    INSERT INTO Students (ID, Email, EntryTime, LeaveTime, Floor, TableNum, IsReminded)
+    VALUES (255555555, 'itamarq@gmail.com', NOW(), '2023-05-08 09:39:29.772912+00:00', 1, 2, 0)
+    
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/QR_generator/QR_code_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+62.90.3.89 - - [08/May/2023 08:44:23] "GET /f2 HTTP/1.1" 200 -
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/QR_generator/QR_code_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+62.90.3.89 - - [08/May/2023 08:44:41] "GET /f3 HTTP/1.1" 200 -
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/QR_generator/QR_code_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+62.90.3.89 - - [08/May/2023 08:44:54] "GET /f4 HTTP/1.1" 200 -
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/QR_generator/QR_code_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/QR_generator/QR_code_generator.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
