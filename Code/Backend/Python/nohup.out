@@ -470,3 +470,22 @@ Press CTRL+C to quit
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 132-863-746
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.31.18.239:5000
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+62.90.3.89 - - [08/May/2023 07:34:20] "GET /f2 HTTP/1.1" 200 -
+62.90.3.89 - - [08/May/2023 07:34:26] "GET /f1 HTTP/1.1" 200 -
+ * Detected change in '/home/ubuntu/Final_project/Find_My_Place/Code/Backend/Python/utils/mail_handlaing/send_mail.py', reloading
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 103-575-630
+62.90.3.89 - - [08/May/2023 07:38:36] "OPTIONS /submit HTTP/1.1" 200 -
+62.90.3.89 - - [08/May/2023 07:38:36] "POST /submit HTTP/1.1" 200 -
+62.90.3.89 - - [08/May/2023 07:38:41] "GET /f1 HTTP/1.1" 200 -

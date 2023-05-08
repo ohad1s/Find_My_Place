@@ -77,6 +77,6 @@ if __name__ == '__main__':
         students_to_update = get_students_to_send_mail()
         for student_data in students_to_update:
             pprint(student_data)
-            create_and_send(student_data["Email"], f"http://localhost:{PORT}/Find_My_Place/Code/front/extend.html?id={student_data['ID']}")
+            create_and_send(student_data["Email"], f"http://findmyplace.online/html/extend.html?id={student_data['ID']}")
             update_student_is_reminded(student_data['ID'])
         time.sleep(60)
