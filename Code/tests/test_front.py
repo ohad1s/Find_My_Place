@@ -30,14 +30,16 @@ class PythonOrgSearch(unittest.TestCase):
     # @unittest.skip("")
     def test_floor(self):
         driver = self.driver
-        driver.get("http://findmyplace.online/floors/f1_page.html")
-        self.assertIn("Floor 1", driver.title)
-        driver.get("http://findmyplace.online/floors/f2_page.html")
-        self.assertIn("Floor 2", driver.title)
-        driver.get("http://findmyplace.online/floors/f3_page.html")
-        self.assertIn("Floor 3", driver.title)
-        driver.get("http://findmyplace.online/floors/f4_page.html")
-        self.assertIn("Floor 4", driver.title)
+        floors = {"f1": "Floor 1", "f2": "Floor 2", "f3": "Floor 3", "f4": "Floor 4"}
+        for floor in floors.keys():
+            driver.get("http://findmyplace.online/")
+            select_element = driver.find_element(By.ID, "selectOption")
+            select = Select(select_element)
+            select.select_by_value(floor)
+            selected_option = select.first_selected_option
+            select_element = driver.find_element(By.TAG_NAME, "button")
+            select_element.click()
+            self.assertIn(floors[floor], driver.title)
 
     # @unittest.skip("")
     def test_extend(self):
@@ -52,13 +54,13 @@ class PythonOrgSearch(unittest.TestCase):
         time_input.send_keys("01:30")
         time_input.send_keys(Keys.RETURN)
         input_field = driver.find_element(By.ID, "input-container2")
-        assert not input_field.is_displayed()
+        assert input_field.is_displayed()
 
     # @unittest.skip("")
     def test_submit(self):
         driver = self.driver
         driver.get("http://findmyplace.online/submit.html")
-        self.assertIn("Extend", driver.title)
+        self.assertIn("Submit", driver.title)
         id_field = self.driver.find_element(By.ID, "ID")
         email_field = self.driver.find_element(By.ID, "email")
         time_field = self.driver.find_element(By.ID, "time")
