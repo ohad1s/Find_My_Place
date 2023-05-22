@@ -3,7 +3,7 @@ from flask_restful import Resource, Api
 from flask_cors import CORS
 from utils.db_functions import get_floor_data, insert_student_submission, extend_student_time, \
     clear_students_and_update_tables, update_current_students
-from utils.send_mail import send_email
+from utils.send_mail import send_mails
 from datetime import datetime, timedelta, timezone
 from time import sleep
 import threading
@@ -77,7 +77,7 @@ api.add_resource(extend_stay, "/enter_extend")
 
 if __name__ == '__main__':
     clean_thread = threading.Thread(target=clear_students_and_update_tables)
-    mail_thread = threading.Thread(target=send_email)
+    mail_thread = threading.Thread(target=send_mails)
     clean_thread.start()
     mail_thread.start()
     print("started db cleaning thread")
