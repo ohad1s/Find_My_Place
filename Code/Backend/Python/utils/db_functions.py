@@ -158,10 +158,8 @@ def update_table_current_students(floor, table_num):
 def clear_students_and_update_tables():
     tables_to_update = get_students_left_tables()
     for student_data in tables_to_update:
-        pprint(student_data)
         stuednt_id = student_data['ID']
         floor = student_data['Floor']
         table_num = student_data['TableNum']
         update_table_current_students(floor, table_num)
         delete_student(stuednt_id)
-    print("finished round!!")

@@ -4,7 +4,7 @@ import time
 from email.message import EmailMessage
 from pprint import pprint
 
-from db_functions import get_students_to_send_mail, update_student_is_reminded
+from utils.db_functions import get_students_to_send_mail, update_student_is_reminded
 
 PORT = '63342'
 def send_email(sender_email: str, email_password: str, context, receiver_email: str, msg: EmailMessage) -> None:
@@ -72,7 +72,7 @@ def create_and_send(receiver_email: str, button_link: str):
     send_email(sender_email, email_password, context, receiver_email, msg)
 
 
-if __name__ == '__main__':
+def send_mails():
     while True:
         students_to_update = get_students_to_send_mail()
         for student_data in students_to_update:
