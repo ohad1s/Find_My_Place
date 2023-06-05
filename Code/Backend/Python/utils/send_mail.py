@@ -3,6 +3,8 @@ import ssl
 import time
 from email.message import EmailMessage
 from pprint import pprint
+import json
+from pathlib import Path
 
 from utils.db_functions import get_students_to_send_mail, update_student_is_reminded
 
@@ -64,8 +66,11 @@ def create_mail(sender_email: str, receiver_email: str, subject: str, button_lin
 
 
 def create_and_send(receiver_email: str, button_link: str):
-    sender_email = 'finalprojectariel123@gmail.com'
-    email_password = 'svsmxreohtisxrki'
+    secrets_json_path = Path(__file__).parent.parent.parent.parent.parent.parent / "secrets.json"
+    with secrets_json_path.open() as sercrets_file:
+        secrets = json.load(sercrets_file)
+    sender_email = secrets["email_user"]
+    email_password = secrets["email_password"]
     subject = 'תזכורת זמן ישיבה'
     context = ssl.create_default_context()
     msg = create_mail(sender_email, receiver_email, subject, button_link)

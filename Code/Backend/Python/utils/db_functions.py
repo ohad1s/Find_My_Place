@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 import json
 
-secrets_json_path = Path(__file__).parent / "jsons/secrets.json"
+secrets_json_path = Path(__file__).parent.parent.parent.parent.parent.parent / "secrets.json"
 
 
 class Get_secrets():
