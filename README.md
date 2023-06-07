@@ -1,6 +1,7 @@
 # Find My Place Project
 
-![Project Logo](https://pasteboard.co/dbEET1ltP05i.png)
+![Project Logo](https://github.com/ohad1s/Find_My_Place/assets/92723105/3ccb55b5-29b1-4376-813b-0afaa63e2f57)
+
 
 This project aims to provide a solution for live monitoring of people density, with a specific focus on the university library. The goal is to offer accurate and real-time data to students, enabling them to make informed decisions about available seating areas within the library. By implementing a user-friendly website interface, students can easily access information about seat availability and optimize their study time.
 
